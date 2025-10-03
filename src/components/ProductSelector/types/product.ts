@@ -1,7 +1,7 @@
 import { StaticImageData } from 'next/image';
 import { ProductCategory } from './category';
 
-interface IProductSize {
+export interface IProductSize {
   sizeProduct: number
   sizeImg: string
 }

@@ -4,13 +4,15 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import './ProductSelector.scss';
 import { productsData } from '../content/products';
-import { IProduct } from '../types/product';
+import { IProduct, IProductSize } from '../types/product';
 import { ProductCategory } from '../types/category';
 import sizeBackground from '../content/images/size.png';
+import { useCartStore } from '@/store/cartStore';
 
 const ProductSelector: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | 'все'>(ProductCategory.ALL);
-  const [selectedSizes, setSelectedSizes] = useState<{ [key: number]: string }>({});
+  const [selectedSizes, setSelectedSizes] = useState<{ [key: number]: IProductSize }>({});
+  const addItem = useCartStore((state) => state.addItem);
 
   const categories = Object.values(ProductCategory);
 
@@ -18,11 +20,15 @@ const ProductSelector: React.FC = () => {
     ? productsData
     : productsData.filter((product) => product.category === activeCategory);
 
-  const handleSizeSelect = (productId: number, size: string) => {
+  const handleSizeSelect = (productId: number, size: IProductSize) => {
     setSelectedSizes((prev) => ({
       ...prev,
       [productId]: size,
     }));
+  };
+
+  const handleAddToCart = (product: IProduct, size: IProductSize) => {
+    addItem(product, size.sizeProduct)
   };
 
   return (
@@ -44,11 +50,11 @@ const ProductSelector: React.FC = () => {
 
         <div className="grid">
           {filteredProducts.map((product: IProduct) => {
-            const selectedSize = selectedSizes[product.id] || product.sizes[0].sizeImg
+            const selectedSize = selectedSizes[product.id] || product.sizes[0]            
             
             return (
               <div key={product.id} className="card">
-                <div className="image" data-size={selectedSize}>
+                <div className="image" data-size={selectedSize.sizeImg}>
                   <Image
                     src={sizeBackground}
                     alt="size background"
@@ -63,8 +69,8 @@ const ProductSelector: React.FC = () => {
                     height={304}
                     className="pizza-image"
                     style={{
-                      width: selectedSize,
-                      height: selectedSize,
+                      width: selectedSize.sizeImg,
+                      height: selectedSize.sizeImg,
                     }}
                   />
                 </div>
@@ -78,8 +84,8 @@ const ProductSelector: React.FC = () => {
                     {product.sizes.map((size) => (
                       <button
                         key={size.sizeProduct}
-                        className={`size-btn ${selectedSize === size.sizeImg ? 'active' : ''}`}
-                        onClick={() => handleSizeSelect(product.id, size.sizeImg)}
+                        className={`size-btn ${selectedSize.sizeImg === size.sizeImg ? 'active' : ''}`}
+                        onClick={() => handleSizeSelect(product.id, size)}
                       >
                         {size.sizeProduct}
                       </button>
@@ -89,7 +95,12 @@ const ProductSelector: React.FC = () => {
                 
                 <div className="footer">
                   <div className="price">от {product.price} руб.</div>
-                  <button className="order-btn">ЗАКАЗАТЬ</button>
+                  <button 
+                    className="order-btn"
+                    onClick={() => handleAddToCart(product, selectedSize)}
+                  >
+                    ЗАКАЗАТЬ
+                  </button>
                 </div>
               </div>
             );

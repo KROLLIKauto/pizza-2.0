@@ -1,10 +1,14 @@
+'use client';
+
 import React from 'react';
 import { Logo } from './images/Logo'
 import { Phone } from './images/Phone'
 import './Header.scss';
 import { PizzaIcon } from './images/PizzaIcon';
+import { useCartStore } from '@/store/cartStore';
 
 const Header: React.FC = () => {
+  const { openModal, getTotalItems, items } = useCartStore();
   return (
     <header className="header">
       <div className="container">
@@ -40,11 +44,15 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          <div className="order">
+          <div className="order" onClick={openModal} style={{ cursor: 'pointer' }}>
             <PizzaIcon />
             <div className="info">
               <div className="title">ВАШ ЗАКАЗ</div>
-              <div className="description">Итальянская и ещё 2 пиццы</div>
+              <div className="description">
+                {getTotalItems() > 0 
+                  ? `${items[0]?.product.name}${items.length > 1 ? ` и ещё ${items.length - 1} ${items.length === 2 ? 'пицца' : 'пиццы'}` : ''}`
+                  : 'Корзина пуста'}
+              </div>
             </div>
           </div>
 
