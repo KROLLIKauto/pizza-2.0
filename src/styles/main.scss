@@ -1,0 +1,39 @@
+/* Основные стили проекта */
+
+@import 'reset';
+@import 'variables';
+
+/* Базовые стили */
+body {
+  font-family: $font-family-base;
+  font-weight: $font-weight-normal;
+  color: $color-black;
+  background-color: $color-white;
+}
+
+/* Контейнер */
+.container {
+  margin: 0 auto;
+  max-width: 1312px;
+  display: flex;
+}
+
+.primary-font {
+  font-size: 18px;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-black;
+}
+
+/* Утилитарные классы */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+

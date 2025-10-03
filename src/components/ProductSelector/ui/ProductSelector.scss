@@ -1,0 +1,322 @@
+@use '../../../styles/variables' as *;
+
+.product-selector {
+  padding: 60px 0;
+  background-color: $color-white;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    font-family: $font-family-primary;
+    font-size: 52px;
+    font-weight: $font-weight-black;
+    color: $color-black;
+    text-align: center;
+    margin: 0 0 48px 0;
+  }
+
+  .categories {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .category-btn {
+    font-family: $font-family-primary;
+    font-size: 18px;
+    font-weight: $font-weight-black;
+    color: $color-black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: $color-red;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    &.active {
+      color: $color-red;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:hover {
+      color: $color-red;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 304px);
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .card {
+    width: 304px;
+    background-color: $color-white;
+    border-radius: 8px;
+    padding: 40px 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 2px 5px 0px rgba(165, 169, 176, 0.3);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .image {
+      position: relative;
+      width: 304px;
+      height: 304px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .size-background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        z-index: 1;
+      }
+
+      .pizza-image {
+        position: relative;
+        z-index: 2;
+        object-fit: contain;
+        transition: all 0.3s ease;
+      }
+    }
+
+    .name {
+      font-family: $font-family-primary;
+      font-size: 24px;
+      font-weight: $font-weight-extrabold;
+      color: $color-black;
+      margin: 0 0 12px 0;
+      line-height: 1.2;
+    }
+
+    .description {
+      font-family: $font-family-secondary;
+      text-align: center;
+      font-size: 14px;
+      font-weight: $font-weight-normal;
+      color: $color-grey;
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .size-selector {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .size-label {
+        font-family: $font-family-secondary;
+        font-size: 12px;
+        color: $color-black;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .size-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+        background-color: #f0f0f0;
+        border-radius: 2px;
+        padding: 2px;
+        width: 182px;
+        height: 32px;
+      }
+
+      .size-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 28px;
+        font-family: $font-family-secondary;
+        font-size: 12px;
+        font-weight: $font-weight-bold;
+        line-height: 18px;
+        color: $color-black;
+        background-color: transparent;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        &.active {
+          background-color: $color-white;
+          color: $color-black;
+        }
+      }
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .price {
+      font-family: $font-family-secondary;
+      font-size: 24px;
+      font-weight: $font-weight-bold;
+      color: $color-black;
+    }
+
+    .order-btn {
+      font-family: $font-family-primary;
+      font-size: 18px;
+      font-weight: $font-weight-black;
+      color: $color-white;
+      background-color: $color-red;
+      border: none;
+      width: 240px;
+      border-radius: 5px;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: darken($color-red, 10%);
+      }
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: 1400px) {
+  .product-selector {
+    .grid {
+      grid-template-columns: repeat(3, 304px);
+      gap: 24px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .product-selector {
+    padding: 40px 0;
+
+    .title {
+      font-size: 36px;
+      margin-bottom: 32px;
+    }
+
+    .categories {
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(2, 304px);
+      gap: 20px;
+    }
+  }
+
+  .card {
+    .name {
+      font-size: 20px;
+    }
+
+    .description {
+      font-size: 13px;
+    }
+
+    .price {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .product-selector {
+    padding: 30px 0;
+
+    .title {
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+
+    .categories {
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .category-btn {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      width: 100%;
+      padding: 12px;
+
+      .image {
+        width: 100%;
+        height: 250px;
+      }
+
+      .name {
+        font-size: 18px;
+      }
+
+      .description {
+        font-size: 12px;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .order-btn {
+        width: 100%;
+      }
+    }
+  }
+}
