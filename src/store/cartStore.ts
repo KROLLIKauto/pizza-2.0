@@ -1,24 +1,24 @@
-import { create } from 'zustand';
-import { IProduct } from '@/components/ProductSelector/types/product';
+import { create } from 'zustand'
+import { IProduct } from '@/components/ProductSelector/types/product'
 
 export interface CartItem {
-  product: IProduct;
-  size: number; 
-  quantity: number;
-  uniqueId: string;
+  product: IProduct
+  size: number 
+  quantity: number
+  uniqueId: string
 }
 
 interface CartState {
-  items: CartItem[];
-  isModalOpen: boolean;
-  addItem: (product: IProduct, size: number) => void;
-  removeItem: (uniqueId: string) => void;
-  updateQuantity: (uniqueId: string, quantity: number) => void;
-  clearCart: () => void;
-  openModal: () => void;
-  closeModal: () => void;
-  getTotalPrice: () => number;
-  getTotalItems: () => number;
+  items: CartItem[]
+  isModalOpen: boolean
+  addItem: (product: IProduct, size: number) => void
+  removeItem: (uniqueId: string) => void
+  updateQuantity: (uniqueId: string, quantity: number) => void
+  clearCart: () => void
+  openModal: () => void
+  closeModal: () => void
+  getTotalPrice: () => number
+  getTotalItems: () => number
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -26,8 +26,8 @@ export const useCartStore = create<CartState>((set, get) => ({
   isModalOpen: false,
 
   addItem: (product, size) => {
-    const uniqueId = `${product.id}-${size}`;
-    const existingItem = get().items.find((item) => item.uniqueId === uniqueId);
+    const uniqueId = `${product.id}-${size}`
+    const existingItem = get().items.find((item) => item.uniqueId === uniqueId)
 
     if (existingItem) {
       set({
@@ -36,7 +36,7 @@ export const useCartStore = create<CartState>((set, get) => ({
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
-      });
+      })
     } else {
       set({
         items: [
@@ -48,50 +48,48 @@ export const useCartStore = create<CartState>((set, get) => ({
             uniqueId,
           },
         ],
-      });
+      })
     }
   },
 
   removeItem: (uniqueId) => {
     set({
       items: get().items.filter((item) => item.uniqueId !== uniqueId),
-    });
+    })
   },
 
   updateQuantity: (uniqueId, quantity) => {
     if (quantity <= 0) {
-      get().removeItem(uniqueId);
-      return;
+      get().removeItem(uniqueId)
+      return
     }
     set({
       items: get().items.map((item) =>
         item.uniqueId === uniqueId ? { ...item, quantity } : item
       ),
-    });
+    })
   },
 
   clearCart: () => {
-    set({ items: [] });
+    set({ items: [] })
   },
 
   openModal: () => {
-    set({ isModalOpen: true });
+    set({ isModalOpen: true })
   },
 
   closeModal: () => {
-    set({ isModalOpen: false });
+    set({ isModalOpen: false })
   },
 
   getTotalPrice: () => {
     return get().items.reduce(
       (total, item) => total + item.product.price * item.quantity,
       0
-    );
+    )
   },
 
   getTotalItems: () => {
-    return get().items.reduce((total, item) => total + item.quantity, 0);
+    return get().items.reduce((total, item) => total + item.quantity, 0)
   },
-}));
-
-
+}))

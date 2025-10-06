@@ -1,37 +1,49 @@
-import React from 'react';
+import React from 'react'
 import Image from 'next/image'
-import bannerImg from './images/banner.png'
 import './Banner.scss'
+import { bannerContent } from './content/banner'
 
 const Banner: React.FC = () => {
   return (
     <section className="banner">
+      <div className="image image-desktop">
+        <Image
+          src={bannerContent.image}
+          alt={bannerContent.imageAlt}
+          width={1007}
+          height={630}
+          priority
+        />
+      </div>
       <div className="container">
         <div className="content">
-          {/* Левая часть с текстом */}
           <div className="text">
-            <h1 className="title">Пицца на заказ</h1>
+            <h1 className="title">{bannerContent.title}</h1>
             <p className="description">
-              Бесплатная и быстрая доставка за час<br />
-              в любое удобное для вас время
+              {bannerContent.description.split('\n').map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  {index < bannerContent.description.split('\n').length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </p>
             <button className="button primary-font">
-              ВЫБРАТЬ ПИЦЦУ
+              {bannerContent.buttonText}
             </button>
           </div>
-
-          <div className="image">
+          <div className="image image-mobile">
             <Image
-              src={bannerImg}
-              alt={'banner'}
+              src={bannerContent.image}
+              alt={bannerContent.imageAlt}
               width={1007}
               height={630}
+              priority
             />
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Banner;
+export default Banner

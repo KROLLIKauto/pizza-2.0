@@ -1,8 +1,8 @@
-import { StaticImageData } from 'next/image';
+import { StaticImageData } from 'next/image'
 
 export interface IPromotion {
-  id: number;
-  title: string;
-  description: string;
-  image: StaticImageData;
+  id: number
+  title: string
+  description: string
+  image: StaticImageData
 }

@@ -1,0 +1,184 @@
+@use '../../../styles/variables.scss' as *;
+
+.features {
+  padding: 60px 0;
+  background: #fff;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 30px 0;
+  }
+
+  .list {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    @media (max-width: $breakpoint-tablet) {
+      gap: 30px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      gap: 24px;
+    }
+  }
+
+  .item {
+    display: flex;
+    width: 870px;
+    height: 314px;
+    gap: 60px;
+    align-items: center;
+
+    @media (max-width: 1920px) {
+      width: 100%;
+      max-width: 870px;
+      padding: 0 20px;
+      height: auto;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      flex-direction: row;
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      align-items: flex-start;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      flex-direction: row;
+      gap: 12px;
+      padding: 0 15px;
+      align-items: flex-start;
+    }
+
+    &.reverse {
+      .image {
+        order: 2;
+
+        @media (max-width: $breakpoint-tablet) {
+          order: 1;
+        }
+      }
+
+      .content {
+        order: 1;
+        padding-right: 0;
+        padding-left: 117px;
+
+        @media (max-width: 1920px) {
+          padding-left: 60px;
+          padding-right: 0;
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+          order: 2;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  .image {
+    width: 314px;
+    height: 314px;
+    flex-shrink: 0;
+
+    @media (max-width: 1920px) {
+      width: clamp(200px, 30vw, 314px);
+      height: clamp(200px, 30vw, 314px);
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      width: 220px;
+      height: 220px;
+    }
+
+    @media (max-width: 640px) {
+      width: 80px;
+      height: 80px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      width: 80px;
+      height: 80px;
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 130px;
+
+      @media (max-width: $breakpoint-tablet) {
+        border-radius: 110px;
+      }
+
+      @media (max-width: 640px) {
+        border-radius: 40px;
+      }
+
+      @media (max-width: $breakpoint-mobile) {
+        border-radius: 40px;
+      }
+    }
+  }
+
+  .content {
+    padding-right: 117px;
+    flex: 1;
+
+    @media (max-width: 1920px) {
+      padding-right: 60px;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      padding: 0;
+      text-align: left;
+    }
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 40px;
+    font-family: $font-family-primary;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .description {
+    font-size: 14px;
+    font-family: $font-family-secondary;
+    line-height: 21px;
+    margin: 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+}

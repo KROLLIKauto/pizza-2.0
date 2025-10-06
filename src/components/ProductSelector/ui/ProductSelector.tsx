@@ -1,40 +1,41 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import './ProductSelector.scss';
-import { productsData } from '../content/products';
-import { IProduct, IProductSize } from '../types/product';
-import { ProductCategory } from '../types/category';
-import sizeBackground from '../content/images/size.png';
-import { useCartStore } from '@/store/cartStore';
+import React, { useState } from 'react'
+import Image from 'next/image'
+import './ProductSelector.scss'
+import { productsData } from '../content/products'
+import { productSelectorContent } from '../content/content'
+import { IProduct, IProductSize } from '../types/product'
+import { ProductCategory } from '../types/category'
+import sizeBackground from '../content/images/size.png'
+import { useCartStore } from '@/store/cartStore'
 
 const ProductSelector: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<ProductCategory | 'все'>(ProductCategory.ALL);
-  const [selectedSizes, setSelectedSizes] = useState<{ [key: number]: IProductSize }>({});
-  const addItem = useCartStore((state) => state.addItem);
+  const [activeCategory, setActiveCategory] = useState<ProductCategory | 'все'>(ProductCategory.ALL)
+  const [selectedSizes, setSelectedSizes] = useState<{ [key: number]: IProductSize }>({})
+  const addItem = useCartStore((state) => state.addItem)
 
-  const categories = Object.values(ProductCategory);
+  const categories = Object.values(ProductCategory)
 
   const filteredProducts = activeCategory === ProductCategory.ALL
     ? productsData
-    : productsData.filter((product) => product.category === activeCategory);
+    : productsData.filter((product) => product.category === activeCategory)
 
   const handleSizeSelect = (productId: number, size: IProductSize) => {
     setSelectedSizes((prev) => ({
       ...prev,
       [productId]: size,
-    }));
-  };
+    }))
+  }
 
   const handleAddToCart = (product: IProduct, size: IProductSize) => {
     addItem(product, size.sizeProduct)
-  };
+  }
 
   return (
     <section className="product-selector">
       <div className="container">
-        <h2 className="title">Выберите пиццу</h2>
+        <h2 className="title">{productSelectorContent.title}</h2>
         
         <div className="categories">
           {categories.map((category) => (
@@ -57,7 +58,7 @@ const ProductSelector: React.FC = () => {
                 <div className="image" data-size={selectedSize.sizeImg}>
                   <Image
                     src={sizeBackground}
-                    alt="size background"
+                    alt={productSelectorContent.sizeBackgroundAlt}
                     width={200}
                     height={200}
                     className="size-background"
@@ -79,7 +80,7 @@ const ProductSelector: React.FC = () => {
                 <p className="description">{product.description}</p>
                 
                 <div className="size-selector">
-                  <span className="size-label">Размер, см:</span>
+                  <span className="size-label">{productSelectorContent.sizeLabel}</span>
                   <div className="size-buttons">
                     {product.sizes.map((size) => (
                       <button
@@ -93,22 +94,22 @@ const ProductSelector: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="footer">
-                  <div className="price">от {product.price} руб.</div>
+                <div className="order-info">
+                  <div className="price">{productSelectorContent.pricePrefix} {product.price} {productSelectorContent.priceSuffix}</div>
                   <button 
                     className="order-btn"
                     onClick={() => handleAddToCart(product, selectedSize)}
                   >
-                    ЗАКАЗАТЬ
+                    {productSelectorContent.orderButton}
                   </button>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ProductSelector;
+export default ProductSelector

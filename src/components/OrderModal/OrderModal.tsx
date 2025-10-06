@@ -1,57 +1,58 @@
-'use client';
+'use client'
 
-import React, { useEffect } from 'react';
-import { useCartStore } from '@/store/cartStore';
-import CartItem from '@/components/CartItem/ui/CartItem';
-import './OrderModal.scss';
+import React, { useEffect } from 'react'
+import { useCartStore } from '@/store/cartStore'
+import CartItem from '@/components/CartItem/ui/CartItem'
+import { orderModalContent } from './content/orderModal'
+import './OrderModal.scss'
 
 const OrderModal: React.FC = () => {
-  const { items, isModalOpen, closeModal, getTotalPrice } = useCartStore();
+  const { items, isModalOpen, closeModal, getTotalPrice } = useCartStore()
 
   useEffect(() => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isModalOpen]);
+      document.body.style.overflow = 'unset'
+    }
+  }, [isModalOpen])
 
-  if (!isModalOpen) return null;
+  if (!isModalOpen) return null
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      closeModal();
+      closeModal()
     }
-  };
+  }
 
   return (
     <div className="order-modal" onClick={handleBackdropClick}>
-      <div className="order-modal__content">
-        <div className="order-modal__header">
-          <h2 className="order-modal__title">Ваш заказ</h2>
+      <div className="content">
+        <div className="header">
+          <h2 className="title">{orderModalContent.title}</h2>
           <button
-            className="order-modal__close"
+            className="close"
             onClick={closeModal}
-            aria-label="Закрыть"
+            aria-label={orderModalContent.closeAriaLabel}
           >
             ×
           </button>
         </div>
 
-        <div className="order-modal__body">
+        <div className="body">
           {items.length === 0 ? (
-            <div className="order-modal__empty">
-              <p>Ваша корзина пуста</p>
-              <p className="order-modal__empty-hint">
-                Добавьте пиццу из меню, чтобы оформить заказ
+            <div className="empty">
+              <p>{orderModalContent.emptyCart.message}</p>
+              <p className="empty-hint">
+                {orderModalContent.emptyCart.hint}
               </p>
             </div>
           ) : (
-            <div className="order-modal__items">
+            <div className="items">
               {items.map((item) => (
                 <CartItem key={item.uniqueId} item={item} />
               ))}
@@ -61,58 +62,55 @@ const OrderModal: React.FC = () => {
 
         {items.length > 0 && (
           <>
-            <div className="order-modal__total">
-              <span className="order-modal__total-label">Сумма заказа:</span>
-              <span className="order-modal__total-price">
-                {getTotalPrice()} руб
+            <div className="total">
+              <span className="label">{orderModalContent.total.label}</span>
+              <span className="price">
+                {getTotalPrice()} {orderModalContent.total.currency}
               </span>
             </div>
 
-            <div className="order-modal__form">
-              <h3 className="order-modal__form-title">Контакты</h3>
-              <div className="order-modal__form-row">
+            <div className="form">
+              <h3 className="form-title">{orderModalContent.form.contactsTitle}</h3>
+              <div className="form-row">
                 <input
                   type="text"
-                  className="order-modal__input"
-                  placeholder="Ваше имя"
+                  className="input"
+                  placeholder={orderModalContent.form.namePlaceholder}
                 />
                 <input
                   type="tel"
-                  className="order-modal__input"
-                  placeholder="Телефон"
+                  className="input"
+                  placeholder={orderModalContent.form.phonePlaceholder}
                 />
               </div>
               <input
                 type="text"
-                className="order-modal__input order-modal__input--full"
-                placeholder="Адрес доставки"
+                className="input full"
+                placeholder={orderModalContent.form.addressPlaceholder}
               />
 
-              <h3 className="order-modal__form-title">Способ оплаты</h3>
-              <div className="order-modal__payment">
-                <label className="order-modal__radio">
+              <h3 className="form-title">{orderModalContent.form.paymentTitle}</h3>
+              <div className="payment">
+                <label className="radio">
                   <input type="radio" name="payment" defaultChecked />
-                  <span>Оплата наличными или картой курьеру</span>
+                  <span>{orderModalContent.form.paymentOptions.cash}</span>
                 </label>
-                <label className="order-modal__radio">
+                <label className="radio">
                   <input type="radio" name="payment" />
-                  <span>Оплата картой онлайн на сайте</span>
+                  <span>{orderModalContent.form.paymentOptions.online}</span>
                 </label>
               </div>
 
-              <button className="order-modal__submit">ОФОРМИТЬ ЗАКАЗ</button>
-              <p className="order-modal__privacy">
-                Нажимая кнопку «Оформить заказ» Вы соглашаетесь с политикой
-                конфиденциальности
+              <button className="submit">{orderModalContent.form.submitButton}</button>
+              <p className="privacy">
+                {orderModalContent.form.privacyText}
               </p>
             </div>
           </>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default OrderModal;
-
-
+export default OrderModal

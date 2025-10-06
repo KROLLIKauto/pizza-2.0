@@ -1,13 +1,13 @@
-import { IProduct } from '@/components/ProductSelector/types/product';
-import { ProductCategory } from '@/components/ProductSelector/types/category';
-import pizza1 from './images/01.png';
-import pizza2 from './images/02.png';
-import pizza3 from './images/03.png';
-import pizza4 from './images/04.png';
-import pizza5 from './images/05.png';
-import pizza6 from './images/06.png';
-import pizza7 from './images/07.png';
-import pizza8 from './images/08.png';
+import { IProduct } from '@/components/ProductSelector/types/product'
+import { ProductCategory } from '@/components/ProductSelector/types/category'
+import pizza1 from './images/01.png'
+import pizza2 from './images/02.png'
+import pizza3 from './images/03.png'
+import pizza4 from './images/04.png'
+import pizza5 from './images/05.png'
+import pizza6 from './images/06.png'
+import pizza7 from './images/07.png'
+import pizza8 from './images/08.png'
 
 const sizes = [
   {
@@ -90,12 +90,11 @@ export const productsData: IProduct[] = [
   },
   {
     id: 8,
-    name: 'Стрибами',
+    name: 'С грибами',
     description: 'Томат, шампиньоны, сыр, красный лук, маслины, соус',
     sizes,
     price: 899,
     image: pizza8,
     category: ProductCategory.CHEESE,
   },
-];
-
+]

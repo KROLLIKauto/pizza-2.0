@@ -1,0 +1,131 @@
+@use '../../../styles/variables.scss' as *;
+
+.delivery-info {
+  padding: 60px 0;
+  background: rgba(248, 246, 243, 1);
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 40px 0;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 30px 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 52px;
+    line-height: 65px;
+    font-family: $font-family-primary;
+    font-weight: 900;
+    text-align: center;
+    margin: 0 0 26px 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 40px;
+      line-height: 60px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 28px;
+      line-height: 35px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+
+    @media (max-width: $breakpoint-tablet) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      gap: 12px;
+    }
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    padding: 32px;
+    border-radius: 5px;
+    min-height: 144px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 2px 5px 0px hsla(48, 22%, 72%, 0.3);
+
+    @media (max-width: $breakpoint-tablet) {
+      padding: 24px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      padding: 20px;
+      gap: 16px;
+      min-height: auto;
+    }
+
+    .image {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+
+      @media (max-width: $breakpoint-mobile) {
+        width: 60px;
+        height: 60px;
+      }
+      
+      img {
+        width: 80px;
+        height: 80px;
+        display: block;
+        object-fit: contain;
+
+        @media (max-width: $breakpoint-mobile) {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-family: $font-family-primary;
+      font-weight: 800;
+      margin: 0 0 8px 0;
+      color: #333;
+
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+    }
+
+    .card-description {
+      font-size: 14px;
+      font-family: $font-family-secondary;
+      line-height: 21px;
+      margin: 0;
+      color: #666;
+
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 12px;
+        line-height: 18px;
+      }
+    }
+  }
+}

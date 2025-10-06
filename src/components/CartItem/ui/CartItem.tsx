@@ -1,36 +1,36 @@
-'use client';
+'use client'
 
-import React from 'react';
-import Image from 'next/image';
-import { CartItem as CartItemType } from '@/store/cartStore';
-import { useCartStore } from '@/store/cartStore';
-import './CartItem.scss';
+import React from 'react'
+import Image from 'next/image'
+import { CartItem as CartItemType } from '@/store/cartStore'
+import { useCartStore } from '@/store/cartStore'
+import './CartItem.scss'
 import PlusImg from '../images/plus.png'
 import MinusImg from '../images/minus.png'
 import DeleteImg from '../images/x.png'
 
 interface CartItemProps {
-  item: CartItemType;
+  item: CartItemType
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  const { updateQuantity, removeItem } = useCartStore();
+  const { updateQuantity, removeItem } = useCartStore()
 
   const handleIncrement = () => {
-    updateQuantity(item.uniqueId, item.quantity + 1);
-  };
+    updateQuantity(item.uniqueId, item.quantity + 1)
+  }
 
   const handleDecrement = () => {
-    updateQuantity(item.uniqueId, item.quantity - 1);
-  };
+    updateQuantity(item.uniqueId, item.quantity - 1)
+  }
 
   const handleRemove = () => {
-    removeItem(item.uniqueId);
-  };
+    removeItem(item.uniqueId)
+  }
 
   return (
     <div className="cart-item">
-      <div className="cart-item__image">
+      <div className="image">
         <Image
           src={item.product.image}
           alt={item.product.name}
@@ -39,14 +39,14 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         />
       </div>
 
-      <div className="cart-item__info">
-        <h4 className="cart-item__name">{item.product.name}</h4>
-        <p className="cart-item__size">{item.size} см</p>
+      <div className="info">
+        <h4 className="name">{item.product.name}</h4>
+        <p className="size">{item.size} см</p>
       </div>
 
-      <div className="cart-item__controls">
+      <div className="controls">
         <button
-          className="cart-item__btn cart-item__btn--decrease"
+          className="btn"
           onClick={handleDecrement}
           aria-label="Уменьшить количество"
         >
@@ -57,9 +57,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             height={24}
           />
         </button>
-        <span className="cart-item__quantity">{item.quantity}</span>
+        <span className="quantity">{item.quantity}</span>
         <button
-          className="cart-item__btn cart-item__btn--increase"
+          className="btn"
           onClick={handleIncrement}
           aria-label="Увеличить количество"
         >
@@ -72,12 +72,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         </button>
       </div>
 
-      <div className="cart-item__price">
+      <div className="price">
         {item.product.price * item.quantity} руб
       </div>
 
       <button
-        className="cart-item__remove"
+        className="remove"
         onClick={handleRemove}
         aria-label="Удалить товар"
       >
@@ -89,9 +89,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
-
-
+export default CartItem

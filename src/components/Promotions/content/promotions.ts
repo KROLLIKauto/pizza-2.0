@@ -1,7 +1,7 @@
-import { IPromotion } from '@/components/Promotions/types/promotion';
-import promo1 from './images/1.png';
-import promo2 from './images/2.png';
-import promo3 from './images/3.png';
+import { IPromotion } from '@/components/Promotions/types/promotion'
+import promo1 from './images/1.png'
+import promo2 from './images/2.png'
+import promo3 from './images/3.png'
 
 export const promotionsData: IPromotion[] = [
   {
@@ -22,4 +22,4 @@ export const promotionsData: IPromotion[] = [
     description: 'Скидка новым клиентам!',
     image: promo3,
   }
-];
+]

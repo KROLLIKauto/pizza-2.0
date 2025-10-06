@@ -1,8 +1,8 @@
-import React from 'react';
-import Image from 'next/image';
-import './Promotions.scss';
-import { promotionsData } from '../content/promotions';
-import { IPromotion } from '../types/promotion';
+import React from 'react'
+import Image from 'next/image'
+import './Promotions.scss'
+import { promotionsData } from '../content/promotions'
+import { IPromotion } from '../types/promotion'
 
 const Promotions: React.FC = () => {
   
@@ -18,6 +18,7 @@ const Promotions: React.FC = () => {
                   alt={promo.title}
                   width={416}
                   height={324}
+                  sizes="(max-width: 834px) 100vw, 416px"
                 />
               </div>
                 <h3 className="promo-title">{promo.title}</h3>
@@ -27,7 +28,7 @@ const Promotions: React.FC = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Promotions;
+export default Promotions

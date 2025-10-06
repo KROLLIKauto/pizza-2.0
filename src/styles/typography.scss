@@ -1,0 +1,108 @@
+h1, .h1 {
+  font-family: $font-family-primary;
+  font-weight: $font-weight-black;
+  font-size: 72px;
+  line-height: 90px;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 52px;
+    line-height: 65px;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+
+h2, .h2 {
+  font-family: $font-family-primary;
+  font-weight: $font-weight-black;
+  font-size: 52px;
+  line-height: 65px;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 40px;
+    line-height: 60px;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 28px;
+    line-height: 35px;
+  }
+}
+
+h3, .h3 {
+  font-family: $font-family-primary;
+  font-weight: $font-weight-black;
+  font-size: 32px;
+  line-height: 40px;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+h4, .h4 {
+  font-family: $font-family-primary;
+  font-weight: $font-weight-black;
+  font-size: 24px;
+  line-height: 30px;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 20px;
+    line-height: 27px;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.accent, .text-accent {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-normal;
+  font-size: 24px;
+  line-height: 36px;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 18px;
+    line-height: 27px;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+p, .text, .text-normal {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-normal;
+  font-size: 14px;
+  line-height: 21px;
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.description, .text-small {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-normal;
+  font-size: 12px;
+  line-height: 18px;
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 11px;
+    line-height: 17px;
+  }
+}

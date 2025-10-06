@@ -5,4 +5,3 @@ export enum ProductCategory {
   CHEESE = 'сырные',
   VEGAN = 'веганские',
 }
-

@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "../components/Header";
+import type { Metadata } from "next"
+import "./globals.css"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
   title: "Pizza Menu - Доставка пиццы",
   description: "Заказ пиццы с доставкой. Свежие ингредиенты, быстрая доставка.",
-};
+  icons: {
+    icon: '/icon.svg',
+  },
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="ru">
@@ -22,7 +26,8 @@ export default function RootLayout({
       <body >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
-  );
+  )
 }

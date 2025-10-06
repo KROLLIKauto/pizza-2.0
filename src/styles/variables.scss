@@ -1,37 +1,19 @@
-/* Переменные для проекта */
-
-/* Цвета */
 $color-white: #ffffff;
 $color-black: #000000;
 $color-red: rgba(229, 45, 45, 1);
 $color-light-blue: #e3f2fd;
 $color-grey: #666666;
-$color-light-grey: #999999;
 
-/* Шрифты */
 $font-family-primary: 'Alegreya', serif;
 $font-family-secondary: 'Roboto', sans-serif;
 $font-family-base: 'Roboto', sans-serif;
-$font-weight-light: 300;
 $font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
 $font-weight-bold: 700;
 $font-weight-extrabold: 800;
 $font-weight-black: 900;
 
-/* Размеры */
-$header-height: 80px; // Временно, будем уточнять по ходу
-
-/* Отступы */
-$spacing-xs: 4px;
 $spacing-sm: 8px;
 $spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
-$spacing-xxl: 48px;
 
-/* Брейкпоинты */
-$breakpoint-mobile: 768px;
-$breakpoint-tablet: 1024px;
-$breakpoint-desktop: 1200px;
+$breakpoint-mobile: 450px;
+$breakpoint-tablet: 834px;
